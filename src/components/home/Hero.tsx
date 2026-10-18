@@ -150,7 +150,7 @@ export function Hero() {
       <div className="sticky top-0 h-screen w-full overflow-hidden hero-fallback">
         {/* Media */}
         {showFinal ? (
-          !failed && <img src={finalFrame} alt="" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-center" />
+          <img src={finalFrame} alt="" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-center" />
         ) : HERO_SOURCE === "video" ? (
           <video
             key={src}
