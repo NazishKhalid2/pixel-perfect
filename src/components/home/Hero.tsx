@@ -150,7 +150,7 @@ export function Hero() {
       <div className="sticky top-0 h-screen w-full overflow-hidden hero-fallback">
         {/* Media */}
         {showFinal ? (
-          !failed && <img src={finalFrame} alt="" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-center" />
+          <img src={finalFrame} alt="" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-center" />
         ) : HERO_SOURCE === "video" ? (
           <video
             key={src}
@@ -182,14 +182,17 @@ export function Hero() {
         )}
 
         {/* Assembly captions */}
-        {capIdx >= 0 && capIdx < CAPTIONS.length && (
-          <div className={`pointer-events-none absolute ${CAPTIONS[capIdx].corner} flex items-center gap-3`} style={{ opacity: capOpacity }}>
-            <span className="h-px w-10 hairline" />
-            <span className="font-display text-xs uppercase tracking-[0.25em] text-on-dark">
-              <span className="mr-2 text-aqua">0{capIdx + 1}</span>{CAPTIONS[capIdx].text}
-            </span>
-          </div>
-        )}
+        {capIdx >= 0 && capIdx < CAPTIONS.length && (() => {
+          const cap = CAPTIONS[capIdx]!;
+          return (
+            <div className={`pointer-events-none absolute ${cap.corner} flex items-center gap-3`} style={{ opacity: capOpacity }}>
+              <span className="h-px w-10 hairline" />
+              <span className="font-display text-xs uppercase tracking-[0.25em] text-on-dark">
+                <span className="mr-2 text-aqua">0{capIdx + 1}</span>{cap.text}
+              </span>
+            </div>
+          );
+        })()}
 
         {/* Unit labels */}
         {!failed && (
