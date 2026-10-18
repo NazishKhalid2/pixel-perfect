@@ -182,14 +182,17 @@ export function Hero() {
         )}
 
         {/* Assembly captions */}
-        {capIdx >= 0 && capIdx < CAPTIONS.length && (
-          <div className={`pointer-events-none absolute ${CAPTIONS[capIdx].corner} flex items-center gap-3`} style={{ opacity: capOpacity }}>
-            <span className="h-px w-10 hairline" />
-            <span className="font-display text-xs uppercase tracking-[0.25em] text-on-dark">
-              <span className="mr-2 text-aqua">0{capIdx + 1}</span>{CAPTIONS[capIdx].text}
-            </span>
-          </div>
-        )}
+        {capIdx >= 0 && capIdx < CAPTIONS.length && (() => {
+          const cap = CAPTIONS[capIdx]!;
+          return (
+            <div className={`pointer-events-none absolute ${cap.corner} flex items-center gap-3`} style={{ opacity: capOpacity }}>
+              <span className="h-px w-10 hairline" />
+              <span className="font-display text-xs uppercase tracking-[0.25em] text-on-dark">
+                <span className="mr-2 text-aqua">0{capIdx + 1}</span>{cap.text}
+              </span>
+            </div>
+          );
+        })()}
 
         {/* Unit labels */}
         {!failed && (
